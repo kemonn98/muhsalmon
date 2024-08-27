@@ -5225,6 +5225,18 @@ figcaption {
   align-items: center;
 }
 
+.div-featured-item.item-8 {
+  width: 100%;
+  height: 100%;
+  background-color: #D18971;
+  background-image: url("../images/img-preview-08.webp");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+}
+
 .id-client {
   z-index: 5;
   height: 0;
