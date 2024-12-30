@@ -1,8 +1,8 @@
 {
-    "remotePath": "./",
-    "host": "host",
-    "username": "username",
-    "password": "password",
+    "remotePath": "./muhsalmon",
+    "host": "45.56.109.49",
+    "username": "admin@sobat.dev",
+    "password": "6WMGfT_)X8H+",
     "port": 21,
     "secure": false,
     "protocol": "ftp",
