@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Mon Dec 30 2024 13:36:55 GMT+0000 (Coordinated Universal Time) -->
 <html data-wf-domain="twois.webflow.io" data-wf-page="677035670c04f65d0fba9465" data-wf-site="677035670c04f65d0fba9459"
     data-wf-status="1">
 
@@ -8,8 +7,7 @@
     <title>The Wedding of Isna &amp; Salmon</title>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Webflow" name="generator" />
-    <link href="https://cdn.prod.website-files.com/677035670c04f65d0fba9459/css/twois.webflow.dbf96bd55.css"
-        rel="stylesheet" type="text/css" />
+    <link href="css/wedding.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
@@ -19,13 +17,92 @@
         type="text/javascript">!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);</script>
     <link href="https://cdn.prod.website-files.com/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://cdn.prod.website-files.com/img/webclip.png" rel="apple-touch-icon" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mutationCallback = function (mutationsList, observer) {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length) {
+                        for (let node of mutation.addedNodes) {
+                            if (node.classList.contains("w-webflow-badge")) {
+                                node.remove();
+                            }
+                        }
+                    }
+                }
+            };
+    
+            const observer = new MutationObserver(mutationCallback);
+            observer.observe(document, { childList: true, subtree: true });
+        });
+    </script>
+    <script>
+        // Scroll to top when page is refreshed
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+        
+        // Alternative method that also works on page load
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+    <script>
+        function updateCountdown() {
+            // Set both wedding dates
+            const akadDate = new Date('2025-01-24T08:00:00').getTime();
+            const resepsiDate = new Date('2025-02-02T10:00:00').getTime();
+            
+            // Update both countdowns every second
+            setInterval(function() {
+                // Get current date and time
+                const now = new Date().getTime();
+                
+                // Process both dates
+                const dates = [
+                    {
+                        target: akadDate,
+                        selector: '.section.akad .div-countdown'
+                    },
+                    {
+                        target: resepsiDate,
+                        selector: '.section.resepsi .div-countdown'
+                    }
+                ];
+                
+                dates.forEach(({target, selector}) => {
+                    // Find the time difference
+                    const timeDiff = target - now;
+                    
+                    // Calculate days, hours, minutes
+                    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                    // Get the specific countdown container
+                    const container = document.querySelector(selector);
+                    
+                    if (timeDiff < 0) {
+                        container.innerHTML = '<div class="txt-m">The Wedding Day Has Arrived!</div>';
+                    } else {
+                        // Update the counter elements
+                        container.querySelector('.div-count:nth-child(1) .txt-counter').textContent = days;
+                        container.querySelector('.div-count:nth-child(2) .txt-counter').textContent = hours;
+                        container.querySelector('.div-count:nth-child(3) .txt-counter').textContent = minutes;
+                    }
+                });
+            }, 1000);
+        }
+
+        // Start the countdown when the page loads
+        document.addEventListener('DOMContentLoaded', updateCountdown);
+    </script>
 </head>
 
 <body class="body">
     <section data-w-id="12d1a00e-3ab4-0aab-f050-b9cedcd31cc5" class="section header">
         <div class="w-layout-blockcontainer container header w-container">
             <div class="div-wrapper header">
-                <div class="div-content"><a data-w-id="f7b5495a-abc8-1964-e824-10ac3b8c5b4e" style="opacity:0" href="/"
+                <div class="div-content"><a data-w-id="f7b5495a-abc8-1964-e824-10ac3b8c5b4e" style="opacity:0" href="/wedding"
                         aria-current="page" class="lb-logo w-inline-block w--current"><img
                             src="https://cdn.prod.website-files.com/677035670c04f65d0fba9459/677038483f51743692b44ae5_is-logo.svg"
                             loading="lazy" alt="" class="img-logo" /></a></div>
@@ -35,7 +112,7 @@
                 </div>
                 <div data-w-id="931c4e7d-ed6d-6b33-aaaf-867cda53244a" style="opacity:0" class="div-content invitation">
                     <div class="txt-label">Dear</div>
-                    <h3 class="h3">Keluarga Besar Pak To</h3>
+                    <h3 class="h3" id="guestName">Guest</h3>
                     <p class="txt-m">You&#x27;re Invited to Celebrate the Wedding of Isna &amp; Salmon</p>
                 </div>
             </div>
@@ -205,7 +282,7 @@
                     <h2 class="h2">The Wedding Celebration</h2>
                 </div>
                 <div class="div-content">
-                    <p class="txt-m">You&#x27;re Invited to Celebrate the Wedding of Isna &amp; Salmon</p>
+                    <p class="txt-m">With heartfelt joy, we invite you to join us in celebrating the sacred union and wedding of Isna & Salmon. Your presence will make our special day even more meaningful.</p>
                 </div>
                 <div class="div-content grid-akad">
                     <div class="div-item">
@@ -243,8 +320,8 @@
                     <div id="w-node-_002819be-28a7-6f01-53c6-cb2f9fae0bab-0fba9465" class="div-item">
                         <div class="txt-label">location</div>
                         <p class="txt-m"><strong><em class="italic-text">Bhagawanta Bhari</em></strong> <br />Jl.
-                            Pamenang No.1, Ngasem, Kediri, East Java 64182</p><a href="#"
-                            class="btn-primary w-button">open maps</a>
+                            Pamenang No.1, Ngasem, Kediri, East Java 64182</p><a href="https://maps.app.goo.gl/XeGeDxVSbM7S9wT97"
+                            class="btn-primary w-button" target="_blank">open maps</a>
                     </div>
                 </div>
             </div>
@@ -336,15 +413,15 @@
                 <div class="div-content grid-gift">
                     <div class="div-item gift"><img
                             src="https://cdn.prod.website-files.com/677035670c04f65d0fba9459/67729dbc6e7b66e10c008be8_img-gift-01.svg"
-                            loading="lazy" alt="" class="img-gift" /><a href="#" class="btn-primary gift w-button">click
+                            loading="lazy" alt="" id="gift1" class="img-gift" /><a href="#" id="btnGift1" class="btn-primary gift w-button">click
                             to copy</a></div>
                     <div id="w-node-_1f5eb7e4-fa69-17ba-7763-b3cfb220e175-0fba9465" class="div-item gift"><img
                             src="https://cdn.prod.website-files.com/677035670c04f65d0fba9459/67729dbce32b9f6e0065f9d2_img-gift-02.svg"
-                            loading="lazy" alt="" class="img-gift" /><a href="#" class="btn-primary gift w-button">click
+                            loading="lazy" alt="" id="gift2" class="img-gift" /><a href="#" id="btnGift2" class="btn-primary gift w-button">click
                             to copy</a></div>
                 </div>
                 <div class="div-content">
-                    <p class="txt-s gift">Tap to copy the bank account number</p>
+                    <p class="txt-s gift" id="giftText">Tap to copy the bank account number.</p>
                 </div>
             </div>
         </div>
@@ -352,7 +429,7 @@
     <section class="section">
         <div class="w-layout-blockcontainer container footer w-container">
             <div class="div-wrapper">
-                <div class="div-content gap-l"><a href="/" aria-current="page"
+                <div class="div-content gap-l"><a href="/wedding" aria-current="page"
                         class="lb-logo w-inline-block w--current"><img
                             src="https://cdn.prod.website-files.com/677035670c04f65d0fba9459/677038483f51743692b44ae5_is-logo.svg"
                             loading="lazy" alt="" class="img-logo" /></a>
@@ -369,6 +446,135 @@
     <script
         src="https://cdn.prod.website-files.com/677035670c04f65d0fba9459/js/webflow.163711c0b93f78a3f53227feb1e895bd.js"
         type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ics-js@0.10.2/dist/ics.min.js"></script>
+    <script>
+    function createCalendarEvent() {
+        // Event details
+        const event = {
+            title: 'Isna & Salmon Wedding',
+            description: 'You\'re Invited to Celebrate the Wedding of Isna & Salmon at Bhagawanta Bhari',
+            location: 'Bhagawanta Bhari, Jl. Pamenang No.1, Ngasem, Kediri, East Java 64182',
+            start: new Date('2025-02-02T10:00:00'),
+            end: new Date('2025-02-02T13:00:00'),
+        };
+
+        // Check if device is iOS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        // Check if device is Android
+        const isAndroid = /Android/.test(navigator.userAgent);
+
+        if (isIOS) {
+            // Format for Apple Calendar
+            const appleCalUrl = encodeURI([
+                'data:text/calendar;charset=utf8,',
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'BEGIN:VEVENT',
+                'URL:http://muhsalmon.com/wedding',
+                'DTSTART:' + event.start.toISOString().replace(/-|:|\.\d\d\d/g, ''),
+                'DTEND:' + event.end.toISOString().replace(/-|:|\.\d\d\d/g, ''),
+                'SUMMARY:' + event.title,
+                'DESCRIPTION:' + event.description,
+                'LOCATION:' + event.location,
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\n'));
+
+            window.open(appleCalUrl);
+        } 
+        else if (isAndroid) {
+            // Google Calendar for Android
+            const googleCalUrl = encodeURI([
+                'https://www.google.com/calendar/render',
+                '?action=TEMPLATE',
+                `&text=${event.title}`,
+                `&details=${event.description}`,
+                `&location=${event.location}`,
+                `&dates=${event.start.toISOString().replace(/-|:|\.\d\d\d/g,'')}`,
+                `/${event.end.toISOString().replace(/-|:|\.\d\d\d/g,'')}`
+            ].join(''));
+            
+            window.open(googleCalUrl);
+        }
+        else {
+            // Desktop browsers - download .ics file
+            const cal = ics();
+            
+            cal.addEvent({
+                title: event.title,
+                description: event.description,
+                location: event.location,
+                start: event.start,
+                end: event.end
+            });
+            
+            cal.download('wedding_isna_salmon');
+        }
+    }
+
+    // Update the button click handler
+    document.addEventListener('DOMContentLoaded', function() {
+        const addToCalendarBtn = document.querySelector('.btn-primary.w-button');
+        if (addToCalendarBtn) {
+            addToCalendarBtn.href = 'javascript:void(0);';
+            addToCalendarBtn.onclick = createCalendarEvent;
+        }
+    });
+    </script>
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            const url = window.location.href;
+            const paramIndex = url.indexOf('?id=');
+            if (paramIndex !== -1) {
+                // Get the parameter value and replace hyphens with spaces
+                return decodeURIComponent(url.slice(paramIndex + 4)).replace(/-/g, ' ');
+            }
+            return '';
+        }
+
+        // Get the 'id' parameter from URL and update the guest name
+        const guestName = getUrlParameter('id');
+        if (guestName) {
+            document.getElementById('guestName').textContent = guestName;
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup for btnGift1
+            const btnGift1 = document.getElementById('btnGift1');
+            btnGift1.addEventListener('click', function(e) {
+                e.preventDefault();
+                copyToClipboard('4451785065', btnGift1);
+            });
+
+            // Setup for btnGift2
+            const btnGift2 = document.getElementById('btnGift2');
+            btnGift2.addEventListener('click', function(e) {
+                e.preventDefault();
+                copyToClipboard('005101154613506', btnGift2);
+            });
+
+            function copyToClipboard(text, button) {
+                // Copy the text to clipboard
+                navigator.clipboard.writeText(text)
+                    .then(() => {
+                        // Store original text
+                        const originalText = button.textContent;
+                        // Change button text
+                        button.textContent = 'Copied to Clipboard';
+                        
+                        // Reset button text after 1 second
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                        }, 1000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy text: ', err);
+                    });
+            }
+        });
+    </script>
 </body>
 
 </html>

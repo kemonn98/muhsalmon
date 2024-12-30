@@ -4,6 +4,10 @@ html {
   font-family: sans-serif;
 }
 
+.w-webflow-badge {
+  display: none !important;
+}
+
 body {
   margin: 0;
 }
