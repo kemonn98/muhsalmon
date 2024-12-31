@@ -1,0 +1,16 @@
+# Allow all robots to crawl the website
+User-agent: *
+Disallow:
+
+# Disallow crawlers from accessing sensitive folders
+Disallow: /php/
+Disallow: /js/
+Disallow: /fonts/
+Disallow: /images/
+
+# Block access to .htaccess and other system files
+Disallow: /.htaccess
+Disallow: /index.html
+
+# Sitemap location
+Sitemap: https://muhsalmon.com/sitemap.xml
