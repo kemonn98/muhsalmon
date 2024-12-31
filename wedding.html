@@ -96,6 +96,41 @@
         // Start the countdown when the page loads
         document.addEventListener('DOMContentLoaded', updateCountdown);
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loadingCover = document.createElement('div');
+            loadingCover.id = 'loadingCover';
+            
+            const logo = document.createElement('img');
+            logo.id = 'loadingLogo';
+            logo.src = 'https://cdn.prod.website-files.com/677035670c04f65d0fba9459/677038483f51743692b44ae5_is-logo.svg';
+            
+            const percentage = document.createElement('h3');
+            percentage.id = 'loadingPercentage';
+            percentage.className = 'h3';
+            percentage.textContent = '0%';
+            
+            loadingCover.appendChild(logo);
+            loadingCover.appendChild(percentage);
+            document.body.appendChild(loadingCover);
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 1;
+                percentage.textContent = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingCover.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingCover.style.display = 'none';
+                        }, 500);
+                    }, 1000);
+                }
+            }, 20); // Adjust this value to control loading speed (20ms = ~2 seconds total)
+        });
+    </script>
 </head>
 
 <body class="body">
@@ -543,80 +578,57 @@
         }
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Setup for btnGift1
-            const btnGift1 = document.getElementById('btnGift1');
-            btnGift1.addEventListener('click', function(e) {
-                e.preventDefault();
-                copyToClipboard('4451785065', btnGift1);
-            });
-
-            // Setup for btnGift2
-            const btnGift2 = document.getElementById('btnGift2');
-            btnGift2.addEventListener('click', function(e) {
-                e.preventDefault();
-                copyToClipboard('005101154613506', btnGift2);
-            });
-
-            function copyToClipboard(text, button) {
-                // Copy the text to clipboard
-                navigator.clipboard.writeText(text)
-                    .then(() => {
-                        // Store original text
-                        const originalText = button.textContent;
-                        // Change button text
-                        button.textContent = 'Copied to Clipboard';
-                        
-                        // Reset button text after 1 second
-                        setTimeout(() => {
-                            button.textContent = originalText;
-                        }, 1000);
-                    })
-                    .catch(err => {
-                        console.error('Failed to copy text: ', err);
-                    });
-            }
-        });
-    </script>
-    <script>
         // Simplified event handling
         function handleGiftCopy(number) {
             // Copy to clipboard
-            navigator.clipboard.writeText(number);
-            
-            // Change text
-            const giftText = document.getElementById('giftText');
-            giftText.textContent = 'Copied to Clipboard';
-            
-            // Reset text after 1 second
-            setTimeout(() => {
-                giftText.textContent = 'Tap to copy the bank account number.';
-            }, 1000);
+            navigator.clipboard.writeText(number)
+                .then(() => {
+                    // Change text
+                    const giftText = document.getElementById('giftText');
+                    giftText.textContent = 'Copied to Clipboard';
+                    
+                    // Reset text after 1 second
+                    setTimeout(() => {
+                        giftText.textContent = 'Tap to copy the bank account number.';
+                    }, 1000);
 
-            // Also update the corresponding button text
-            const btnId = number === '4451785065' ? 'btnGift1' : 'btnGift2';
-            const btn = document.getElementById(btnId);
-            const originalText = btn.textContent;
-            btn.textContent = 'Copied to Clipboard';
-            setTimeout(() => {
-                btn.textContent = originalText;
-            }, 1000);
+                    // Also update the corresponding button text
+                    const btnId = number === '4451785065' ? 'btnGift1' : 'btnGift2';
+                    const btn = document.getElementById(btnId);
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Copied to Clipboard';
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                    }, 1000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                });
         }
 
-        // Keep the button click handlers for desktop
+        // Add click handlers for both the images and buttons
         document.addEventListener('DOMContentLoaded', function() {
+            // Gift 1 handlers
+            const gift1Img = document.getElementById('gift1');
             const btnGift1 = document.getElementById('btnGift1');
-            const btnGift2 = document.getElementById('btnGift2');
-
-            btnGift1.addEventListener('click', (e) => {
+            const gift1Handler = (e) => {
                 e.preventDefault();
                 handleGiftCopy('4451785065');
-            });
+            };
+            
+            if (gift1Img) gift1Img.addEventListener('click', gift1Handler);
+            if (btnGift1) btnGift1.addEventListener('click', gift1Handler);
 
-            btnGift2.addEventListener('click', (e) => {
+            // Gift 2 handlers
+            const gift2Img = document.getElementById('gift2');
+            const btnGift2 = document.getElementById('btnGift2');
+            const gift2Handler = (e) => {
                 e.preventDefault();
                 handleGiftCopy('005101154613506');
-            });
+            };
+            
+            if (gift2Img) gift2Img.addEventListener('click', gift2Handler);
+            if (btnGift2) btnGift2.addEventListener('click', gift2Handler);
         });
     </script>
 </body>
