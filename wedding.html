@@ -100,6 +100,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const loadingCover = document.createElement('div');
             loadingCover.id = 'loadingCover';
+            loadingCover.style.transform = 'translateY(0)'; // Start at normal position
             
             const logo = document.createElement('img');
             logo.id = 'loadingLogo';
@@ -122,13 +123,14 @@
                 if (progress >= 100) {
                     clearInterval(interval);
                     setTimeout(() => {
-                        loadingCover.style.opacity = '0';
+                        loadingCover.style.transition = 'transform 1s ease-in';
+                        loadingCover.style.transform = 'translateY(-100%)'; // Slide up
                         setTimeout(() => {
                             loadingCover.style.display = 'none';
-                        }, 500);
+                        }, 1000);
                     }, 1000);
                 }
-            }, 20); // Adjust this value to control loading speed (20ms = ~2 seconds total)
+            }, 20);
         });
     </script>
 </head>
