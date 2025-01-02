@@ -179,7 +179,7 @@
                         pasangan-pasangan untukmu dari jenismu sendiri, agar kamu merasa tenteram kepadanya, dan Dia
                         menjadikan di antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar
                         terdapat tanda-tanda bagi kaum yang berpikir.&quot;</p><img
-                        src="https://cdn.prod.website-files.com/677035670c04f65d0fba9459/6770384507a843686ffb3dbd_ic-quran.svg"
+                        src="images/ic-quran.svg"
                         loading="lazy" alt="" class="ic-32" />
                 </div>
             </div>
@@ -595,10 +595,9 @@
                     // Also update the corresponding button text
                     const btnId = number === '4451785065' ? 'btnGift1' : 'btnGift2';
                     const btn = document.getElementById(btnId);
-                    const originalText = btn.textContent;
                     btn.textContent = 'Copied to Clipboard';
                     setTimeout(() => {
-                        btn.textContent = originalText;
+                        btn.textContent = 'click to copy'; // Directly set the original text
                     }, 1000);
                 })
                 .catch(err => {
