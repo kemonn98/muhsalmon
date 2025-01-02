@@ -1,0 +1,2 @@
+# Ignore FTP configuration files
+.vscode/ftp-sync.json
