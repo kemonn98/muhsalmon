@@ -133,6 +133,32 @@
             }, 20);
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const music = new Audio('music/background-music.mp3'); // Adjust path as needed
+            music.loop = true; // Makes the music loop continuously
+            
+            // Add play/pause button
+            const musicBtn = document.createElement('button');
+            musicBtn.innerHTML = '🎵'; // Music note emoji as button text
+            musicBtn.className = 'music-control';
+            document.body.appendChild(musicBtn);
+            
+            let isPlaying = false;
+            
+            // Handle music button click
+            musicBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    music.pause();
+                    musicBtn.innerHTML = '🎵';
+                } else {
+                    music.play();
+                    musicBtn.innerHTML = '⏸️';
+                }
+                isPlaying = !isPlaying;
+            });
+        });
+    </script>
 </head>
 
 <body class="body">

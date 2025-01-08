@@ -300,6 +300,28 @@ html.w-mod-touch * {
     font-size: 24px; /* adjust as needed */
 }
 
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.music-control:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
 .w-block {
     display: block;
 }
