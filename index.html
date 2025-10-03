@@ -30,6 +30,35 @@
     <link rel="icon" type="image/x-icon" href="https://assets-global.website-files.com/5eaaff6f2c048cabeb929aa2/5eabeebfbc104736de6b925c_icon-32.svg">
     <link rel="apple-touch-icon" href="https://assets-global.website-files.com/5eaaff6f2c048cabeb929aa2/5eabee8a573fea613428a835_icon-256.svg">
     
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,679 +104,261 @@
     }
     </script>
     
+    <!-- Custom Styles for Enhanced Components -->
     <style>
-        :root {
-            /* Dark Theme Colors */
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-tertiary: #2a2a2a;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-muted: #666666;
-            --accent: #ffffff;
-            --accent-hover: #f0f0f0;
-            --border: #333333;
-            
-            /* Light Theme Colors */
-            --bg-primary-light: #ffffff;
-            --bg-secondary-light: #f8f8f8;
-            --bg-tertiary-light: #f0f0f0;
-            --text-primary-light: #000000;
-            --text-secondary-light: #333333;
-            --text-muted-light: #666666;
-            --accent-light: #000000;
-            --accent-hover-light: #333333;
-            --border-light: #e0e0e0;
-            
-            /* Typography */
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-size-xs: 0.75rem;
-            --font-size-sm: 0.875rem;
-            --font-size-base: 1rem;
-            --font-size-lg: 1.125rem;
-            --font-size-xl: 1.25rem;
-            --font-size-2xl: 1.5rem;
-            --font-size-3xl: 1.875rem;
-            --font-size-4xl: 2.25rem;
-            --font-size-5xl: 3rem;
-            --font-size-6xl: 3.75rem;
-            
-            /* Spacing */
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 3rem;
-            --spacing-2xl: 4rem;
-            --spacing-3xl: 6rem;
-            
-            /* Transitions */
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
         
-        body {
-            font-family: var(--font-family);
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            transition: var(--transition);
-            overflow-x: hidden;
-        }
-        
-        /* Theme Variables */
-        [data-theme="dark"] {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-tertiary: #2a2a2a;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-muted: #666666;
-            --accent: #ffffff;
-            --accent-hover: #f0f0f0;
-            --border: #333333;
-        }
-        
-        [data-theme="light"] {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f8f8;
-            --bg-tertiary: #f0f0f0;
-            --text-primary: #000000;
-            --text-secondary: #333333;
-            --text-muted: #666666;
-            --accent: #000000;
-            --accent-hover: #333333;
-            --border: #e0e0e0;
-        }
-        
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-sm);
-        }
-        
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: var(--bg-primary);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--spacing-sm) 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: var(--font-size-lg);
-            transition: var(--transition);
-        }
-        
-        .logo:hover {
-            color: var(--accent-hover);
-        }
-        
-        .logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .nav {
-            display: flex;
-            gap: var(--spacing-lg);
-            align-items: center;
-        }
-        
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .nav-link:hover {
-            color: var(--text-primary);
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: var(--transition);
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            padding: var(--spacing-xs);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: var(--font-size-sm);
-        }
-        
-        .theme-toggle:hover {
-            background-color: var(--bg-secondary);
-        }
-        
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: var(--font-size-lg);
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: var(--spacing-3xl) 0;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-        }
-        
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-3xl);
-            align-items: center;
-        }
-        
-        .hero-text h1 {
-            font-size: var(--font-size-6xl);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: var(--spacing-md);
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .hero-text p {
-            font-size: var(--font-size-xl);
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-xl);
-            max-width: 500px;
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #000000 0%, #666666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .hero-buttons {
-            display: flex;
-            gap: var(--spacing-md);
-            flex-wrap: wrap;
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: var(--spacing-md) var(--spacing-lg);
-            border: 2px solid var(--accent);
-            background-color: transparent;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: var(--transition);
-            cursor: pointer;
-            font-size: var(--font-size-base);
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .btn:hover {
-            background-color: var(--accent);
-            color: var(--bg-primary);
-        }
-        
-        .btn-secondary {
-            border-color: var(--border);
-            color: var(--text-secondary);
-        }
-        
-        .btn-secondary:hover {
-            background-color: var(--bg-secondary);
-            color: var(--text-primary);
-            border-color: var(--text-secondary);
-        }
-        
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Section */
-        .section {
-            padding: var(--spacing-3xl) 0;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: var(--spacing-3xl);
-        }
-        
-        .section-title {
-            font-size: var(--font-size-4xl);
-            font-weight: 700;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-primary);
-        }
-        
-        .section-subtitle {
-            font-size: var(--font-size-xl);
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* Work Grid */
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-xl);
-            margin-top: var(--spacing-3xl);
-        }
-        
-        .work-item {
-            background-color: var(--bg-secondary);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: var(--transition);
-            border: 1px solid var(--border);
-        }
-        
-        .work-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .work-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .work-content {
-            padding: var(--spacing-lg);
-        }
-        
-        .work-title {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
-        }
-        
-        .work-description {
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .work-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-xs);
-        }
-        
-        .work-tag {
-            background-color: var(--bg-tertiary);
-            color: var(--text-secondary);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: 20px;
-            font-size: var(--font-size-xs);
-            font-weight: 500;
-        }
-        
-        /* Experience */
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-3xl);
-        }
-        
-        .experience-item {
-            background-color: var(--bg-secondary);
-            padding: var(--spacing-lg);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-        
-        .experience-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .experience-role {
-            font-size: var(--font-size-lg);
-            font-weight: 600;
-            margin-bottom: var(--spacing-xs);
-            color: var(--text-primary);
-        }
-        
-        .experience-company {
-            font-size: var(--font-size-base);
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .experience-period {
-            font-size: var(--font-size-sm);
-            color: var(--text-muted);
-        }
-        
-        /* Contact */
-        .contact {
-            background-color: var(--bg-secondary);
-            border-radius: 20px;
-            padding: var(--spacing-3xl);
-            text-align: center;
-            margin: var(--spacing-3xl) 0;
-        }
-        
-        .contact h2 {
-            font-size: var(--font-size-4xl);
-            font-weight: 700;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-primary);
-        }
-        
-        .contact p {
-            font-size: var(--font-size-xl);
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-xl);
-        }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-lg);
-            flex-wrap: wrap;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .contact-item:hover {
-            color: var(--text-primary);
-        }
-        
-        /* Footer */
-        .footer {
-            background-color: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            padding: var(--spacing-xl) 0;
-            margin-top: var(--spacing-3xl);
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: var(--spacing-md);
-        }
-        
-        .footer-text {
-            color: var(--text-muted);
-            font-size: var(--font-size-sm);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: var(--spacing-md);
-        }
-        
-        .social-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: var(--font-size-lg);
-            transition: var(--transition);
-        }
-        
-        .social-link:hover {
-            color: var(--text-primary);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .nav {
-                display: none;
-            }
-            
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: var(--spacing-xl);
-            }
-            
-            .hero-text h1 {
-                font-size: var(--font-size-4xl);
-            }
-            
-            .hero-text p {
-                font-size: var(--font-size-lg);
-            }
-            
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .experience-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: var(--spacing-md);
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 var(--spacing-xs);
-            }
-            
-            .hero-text h1 {
-                font-size: var(--font-size-3xl);
-            }
-            
-            .section-title {
-                font-size: var(--font-size-3xl);
-            }
-            
-            .btn {
-                padding: var(--spacing-sm) var(--spacing-md);
-                font-size: var(--font-size-sm);
-            }
-        }
-        
-        /* Smooth scrolling for anchor links */
-        html {
-            scroll-padding-top: 80px;
-        }
-        
-        /* Loading animation */
-        .loading {
-            opacity: 0;
+        .animate-fade-in {
             animation: fadeIn 0.6s ease-in-out forwards;
         }
         
         @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Focus styles for accessibility */
-        .btn:focus,
-        .nav-link:focus,
-        .theme-toggle:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .dark .hover-lift:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Form Styles */
+        .form-input {
+            @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                   bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+                   focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                   transition-all duration-200;
+        }
+        
+        .form-label {
+            @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2;
+        }
+        
+        .btn-primary {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg
+                   transition-all duration-200 transform hover:scale-105 focus:outline-none
+                   focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+        }
+        
+        .btn-secondary {
+            @apply bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600
+                   text-gray-900 dark:text-white font-semibold py-3 px-6 rounded-lg
+                   transition-all duration-200 transform hover:scale-105 focus:outline-none
+                   focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+        }
+        
+        .modal-content {
+            @apply bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4;
         }
     </style>
 </head>
 
-<body>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-sans transition-colors duration-300">
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">
-                    <img src="https://assets-global.website-files.com/5eaaff6f2c048cabeb929aa2/62d981c82413ac01593921fe_img-avatar.webp" alt="Muhammad Salmon">
-                    <span>muhammad salmon</span>
+    <header class="fixed top-0 left-0 right-0 z-50 glass-effect">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="flex items-center space-x-3 text-xl font-semibold hover:opacity-80 transition-opacity">
+                    <img src="https://assets-global.website-files.com/5eaaff6f2c048cabeb929aa2/62d981c82413ac01593921fe_img-avatar.webp" 
+                         alt="Muhammad Salmon" 
+                         class="w-10 h-10 rounded-full object-cover">
+                    <span class="hidden sm:block">muhammad salmon</span>
                 </a>
                 
-                <nav class="nav">
-                    <a href="#work" class="nav-link">Work</a>
-                    <a href="#experience" class="nav-link">Experience</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                    <button class="theme-toggle" onclick="toggleTheme()">
-                        <span id="theme-icon">🌙</span>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#work" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group">
+                        Work
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#experience" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group">
+                        Experience
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <button onclick="toggleTheme()" class="p-2 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <span id="theme-icon" class="text-lg">🌙</span>
                     </button>
                 </nav>
                 
-                <button class="mobile-menu-toggle">☰</button>
+                <button class="md:hidden p-2 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="toggleMobileMenu()">
+                    ☰
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#work" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Work</a>
+                <a href="#experience" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Experience</a>
+                <a href="#contact" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Contact</a>
+                <button onclick="toggleTheme()" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+                    <span>Toggle Theme</span>
+                    <span id="theme-icon-mobile" class="text-lg">🌙</span>
+                </button>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content loading">
-                <div class="hero-text">
-                    <h1>Visual Designer & Web Developer</h1>
-                    <p>Based in Yogyakarta, Indonesia. Strategically designing things that actually work and achieve goals.</p>
-                    <div class="hero-buttons">
-                        <a href="#work" class="btn">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    <section class="min-h-screen flex items-center pt-20 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6 gradient-text">
+                        Visual Designer & Web Developer
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg">
+                        Based in Yogyakarta, Indonesia. Strategically designing things that actually work and achieve goals.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#work" class="btn-primary">
+                            View My Work
+                        </a>
+                        <a href="#contact" class="btn-secondary">
+                            Get In Touch
+                        </a>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <img src="https://assets-global.website-files.com/5eaaff6f2c048cabeb929aa2/62d981c87136909f465e82c3_img-avatar-big.webp" alt="Muhammad Salmon - Visual Designer">
+                <div class="flex justify-center animate-slide-up">
+                    <div class="relative">
+                        <img src="https://assets-global.website-files.com/5eaaff6f2c048cabeb929aa2/62d981c87136909f465e82c3_img-avatar-big.webp" 
+                             alt="Muhammad Salmon - Visual Designer" 
+                             class="w-80 h-80 lg:w-96 lg:h-96 rounded-2xl object-cover shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent rounded-2xl"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Work Section -->
-    <section id="work" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Featured Work</h2>
-                <p class="section-subtitle">A selection of projects that showcase my expertise in design and development</p>
+    <section id="work" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4">Featured Work</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    A selection of projects that showcase my expertise in design and development
+                </p>
             </div>
             
-            <div class="work-grid">
-                <article class="work-item">
-                    <img src="images/img-featured-1.svg" alt="SlabPixel" class="work-image">
-                    <div class="work-content">
-                        <h3 class="work-title">SlabPixel</h3>
-                        <p class="work-description">Creative agency specializing in visual branding, UI/UX, and web development. Leading design team to create impactful digital experiences.</p>
-                        <div class="work-tags">
-                            <span class="work-tag">Visual Branding</span>
-                            <span class="work-tag">UI/UX</span>
-                            <span class="work-tag">Web Development</span>
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <article class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover-lift group">
+                    <div class="aspect-video bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <img src="images/img-featured-1.svg" alt="SlabPixel" class="w-32 h-32 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">SlabPixel</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Creative agency specializing in visual branding, UI/UX, and web development. Leading design team to create impactful digital experiences.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">Visual Branding</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-full">UI/UX</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm rounded-full">Web Development</span>
                         </div>
                     </div>
                 </article>
                 
-                <article class="work-item">
-                    <img src="images/img-featured-7.webp" alt="Sibambo Studio" class="work-image">
-                    <div class="work-content">
-                        <h3 class="work-title">Sibambo Studio</h3>
-                        <p class="work-description">Indonesia's top architectural consultant in residential design. Created comprehensive UI/UX and brand identity for their digital presence.</p>
-                        <div class="work-tags">
-                            <span class="work-tag">UI/UX</span>
-                            <span class="work-tag">Branding</span>
-                            <span class="work-tag">Motion Design</span>
+                <article class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover-lift group">
+                    <div class="aspect-video bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                        <img src="images/img-featured-7.webp" alt="Sibambo Studio" class="w-32 h-32 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">Sibambo Studio</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Indonesia's top architectural consultant in residential design. Created comprehensive UI/UX and brand identity for their digital presence.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-full">UI/UX</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">Branding</span>
+                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 text-sm rounded-full">Motion Design</span>
                         </div>
                     </div>
                 </article>
                 
-                <article class="work-item">
-                    <img src="images/img-featured-6.svg" alt="VisualTap" class="work-image">
-                    <div class="work-content">
-                        <h3 class="work-title">VisualTap</h3>
-                        <p class="work-description">Design asset library providing free and premium resources for branding, design, and advertisement. Built comprehensive design system.</p>
-                        <div class="work-tags">
-                            <span class="work-tag">Branding</span>
-                            <span class="work-tag">UI Design</span>
-                            <span class="work-tag">Web Development</span>
+                <article class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover-lift group">
+                    <div class="aspect-video bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                        <img src="images/img-featured-6.svg" alt="VisualTap" class="w-32 h-32 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">VisualTap</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Design asset library providing free and premium resources for branding, design, and advertisement. Built comprehensive design system.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">Branding</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-full">UI Design</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm rounded-full">Web Development</span>
                         </div>
                     </div>
                 </article>
                 
-                <article class="work-item">
-                    <img src="images/img-featured-8.svg" alt="Visuel Colonie" class="work-image">
-                    <div class="work-content">
-                        <h3 class="work-title">Visuel Colonie</h3>
-                        <p class="work-description">Branding and visual identity solutions with strong emphasis on creativity and detail. Helping brands stand out in competitive markets.</p>
-                        <div class="work-tags">
-                            <span class="work-tag">Web Design</span>
-                            <span class="work-tag">Branding</span>
+                <article class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover-lift group">
+                    <div class="aspect-video bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center">
+                        <img src="images/img-featured-8.svg" alt="Visuel Colonie" class="w-32 h-32 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">Visuel Colonie</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Branding and visual identity solutions with strong emphasis on creativity and detail. Helping brands stand out in competitive markets.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-full">Web Design</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">Branding</span>
                         </div>
                     </div>
                 </article>
@@ -756,81 +367,162 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">Always passionate about creating beautiful & useful things</p>
+    <section id="experience" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4">Experience</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Always passionate about creating beautiful & useful things
+                </p>
             </div>
             
-            <div class="experience-grid">
-                <div class="experience-item">
-                    <h3 class="experience-role">Creative Director</h3>
-                    <div class="experience-company">SlabPixel</div>
-                    <div class="experience-period">Aug 2022 - Present</div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover-lift">
+                    <h3 class="text-lg font-semibold mb-2">Creative Director</h3>
+                    <div class="text-gray-600 dark:text-gray-300 mb-2">SlabPixel</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Aug 2022 - Present</div>
                 </div>
                 
-                <div class="experience-item">
-                    <h3 class="experience-role">Creative Director</h3>
-                    <div class="experience-company">One Week Wonders</div>
-                    <div class="experience-period">Nov 2017 - Aug 2022</div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover-lift">
+                    <h3 class="text-lg font-semibold mb-2">Creative Director</h3>
+                    <div class="text-gray-600 dark:text-gray-300 mb-2">One Week Wonders</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Nov 2017 - Aug 2022</div>
                 </div>
                 
-                <div class="experience-item">
-                    <h3 class="experience-role">Founder & Creative Director</h3>
-                    <div class="experience-company">Sobat Studio</div>
-                    <div class="experience-period">Aug 2019 - Present</div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover-lift">
+                    <h3 class="text-lg font-semibold mb-2">Founder & Creative Director</h3>
+                    <div class="text-gray-600 dark:text-gray-300 mb-2">Sobat Studio</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Aug 2019 - Present</div>
                 </div>
                 
-                <div class="experience-item">
-                    <h3 class="experience-role">Co-Founder & Product Designer</h3>
-                    <div class="experience-company">Upshift.Supply</div>
-                    <div class="experience-period">Sep 2020 - Present</div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover-lift">
+                    <h3 class="text-lg font-semibold mb-2">Co-Founder & Product Designer</h3>
+                    <div class="text-gray-600 dark:text-gray-300 mb-2">Upshift.Supply</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Sep 2020 - Present</div>
                 </div>
                 
-                <div class="experience-item">
-                    <h3 class="experience-role">Product Designer</h3>
-                    <div class="experience-company">Iconhub</div>
-                    <div class="experience-period">Sep 2020 - Present</div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover-lift">
+                    <h3 class="text-lg font-semibold mb-2">Product Designer</h3>
+                    <div class="text-gray-600 dark:text-gray-300 mb-2">Iconhub</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Sep 2020 - Present</div>
                 </div>
                 
-                <div class="experience-item">
-                    <h3 class="experience-role">Visual Designer & Web Developer</h3>
-                    <div class="experience-company">INFINITE DISRUPTION</div>
-                    <div class="experience-period">Feb 2020 - Present</div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover-lift">
+                    <h3 class="text-lg font-semibold mb-2">Visual Designer & Web Developer</h3>
+                    <div class="text-gray-600 dark:text-gray-300 mb-2">INFINITE DISRUPTION</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Feb 2020 - Present</div>
                 </div>
             </div>
             
-            <div class="contact">
-                <h2>Let's work together</h2>
-                <p>I never stop learning, and I always see a place for improvements. It drives everything I do.</p>
-                <div class="contact-info">
-                    <a href="mailto:muhsalmon98@gmail.com" class="contact-item">
-                        <span>📧</span>
-                        <span>muhsalmon98@gmail.com</span>
+            <!-- Contact CTA -->
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-center text-white">
+                <h2 class="text-3xl font-bold mb-4">Let's work together</h2>
+                <p class="text-xl mb-8 opacity-90">
+                    I never stop learning, and I always see a place for improvements. It drives everything I do.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="mailto:muhsalmon98@gmail.com" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        📧 muhsalmon98@gmail.com
                     </a>
-                    <a href="https://www.linkedin.com/in/muhsalmon/" target="_blank" class="contact-item">
-                        <span>💼</span>
-                        <span>LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/muhsalmon/" target="_blank" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors">
+                        💼 LinkedIn
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4">Get In Touch</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">
+                    Ready to start your next project? Let's discuss how we can work together.
+                </p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8">
+                <form id="contact-form" action="php/contact-form.php" method="post" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="form-label">Name *</label>
+                            <input type="text" id="name" name="name" required class="form-input" placeholder="Your full name">
+                        </div>
+                        <div>
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" name="email" required class="form-input" placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="services" class="form-label">Services Needed</label>
+                        <select id="services" name="services" class="form-input">
+                            <option value="">Select a service</option>
+                            <option value="visual-branding">Visual Branding</option>
+                            <option value="ui-ux">UI/UX Design</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="graphic-design">Graphic Design</option>
+                            <option value="motion-graphics">Motion Graphics</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="budget" class="form-label">Project Budget</label>
+                        <select id="budget" name="budget" class="form-input">
+                            <option value="">Select budget range</option>
+                            <option value="under-1k">Under $1,000</option>
+                            <option value="1k-5k">$1,000 - $5,000</option>
+                            <option value="5k-10k">$5,000 - $10,000</option>
+                            <option value="10k-25k">$10,000 - $25,000</option>
+                            <option value="over-25k">Over $25,000</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="timeline" class="form-label">Timeline</label>
+                        <select id="timeline" name="timeline" class="form-input">
+                            <option value="">Select timeline</option>
+                            <option value="asap">ASAP</option>
+                            <option value="1-2-weeks">1-2 weeks</option>
+                            <option value="1-month">1 month</option>
+                            <option value="2-3-months">2-3 months</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="form-label">Project Details *</label>
+                        <textarea id="message" name="message" required rows="5" class="form-input" placeholder="Tell me about your project goals, requirements, and any specific details..."></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn-primary">
+                            Send Message
+                        </button>
+                    </div>
+                    
+                    <!-- Success/Error Messages -->
+                    <div id="form-messages" class="hidden text-center p-4 rounded-lg"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-text">
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="text-gray-600 dark:text-gray-400 text-sm">
                     <p>&copy; 2025 Muhammad Salmon. Built with passion in Yogyakarta, Indonesia.</p>
                 </div>
-                <div class="social-links">
-                    <a href="https://dribbble.com/kemonn" target="_blank" class="social-link" aria-label="Dribbble">🏀</a>
-                    <a href="https://www.behance.net/muh_salmon" target="_blank" class="social-link" aria-label="Behance">🎨</a>
-                    <a href="https://www.linkedin.com/in/muhsalmon/" target="_blank" class="social-link" aria-label="LinkedIn">💼</a>
-                    <a href="https://www.instagram.com/m.kemonn/" target="_blank" class="social-link" aria-label="Instagram">📷</a>
-                    <a href="https://www.facebook.com/muh.salmon/" target="_blank" class="social-link" aria-label="Facebook">📘</a>
+                <div class="flex space-x-6">
+                    <a href="https://dribbble.com/kemonn" target="_blank" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-xl" aria-label="Dribbble">🏀</a>
+                    <a href="https://www.behance.net/muh_salmon" target="_blank" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-xl" aria-label="Behance">🎨</a>
+                    <a href="https://www.linkedin.com/in/muhsalmon/" target="_blank" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-xl" aria-label="LinkedIn">💼</a>
+                    <a href="https://www.instagram.com/m.kemonn/" target="_blank" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-xl" aria-label="Instagram">📷</a>
+                    <a href="https://www.facebook.com/muh.salmon/" target="_blank" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-xl" aria-label="Facebook">📘</a>
                 </div>
             </div>
         </div>
@@ -841,33 +533,49 @@
         function toggleTheme() {
             const html = document.documentElement;
             const themeIcon = document.getElementById('theme-icon');
-            const currentTheme = html.getAttribute('data-theme');
+            const themeIconMobile = document.getElementById('theme-icon-mobile');
             
-            if (currentTheme === 'dark') {
-                html.setAttribute('data-theme', 'light');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
                 themeIcon.textContent = '☀️';
+                if (themeIconMobile) themeIconMobile.textContent = '☀️';
                 localStorage.setItem('theme', 'light');
             } else {
-                html.setAttribute('data-theme', 'dark');
+                html.classList.add('dark');
                 themeIcon.textContent = '🌙';
+                if (themeIconMobile) themeIconMobile.textContent = '🌙';
                 localStorage.setItem('theme', 'dark');
             }
+        }
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
         }
         
         // Load saved theme
         document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('theme') || 'dark';
+            const html = document.documentElement;
             const themeIcon = document.getElementById('theme-icon');
+            const themeIconMobile = document.getElementById('theme-icon-mobile');
             
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+            if (savedTheme === 'light') {
+                html.classList.remove('dark');
+                themeIcon.textContent = '☀️';
+                if (themeIconMobile) themeIconMobile.textContent = '☀️';
+            } else {
+                html.classList.add('dark');
+                themeIcon.textContent = '🌙';
+                if (themeIconMobile) themeIconMobile.textContent = '🌙';
+            }
             
-            // Add loading animation
-            const loadingElements = document.querySelectorAll('.loading');
-            loadingElements.forEach((element, index) => {
-                setTimeout(() => {
-                    element.style.opacity = '1';
-                }, index * 200);
+            // Close mobile menu when clicking on links
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
             });
         });
         
@@ -885,14 +593,45 @@
             });
         });
         
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
-            } else {
-                header.style.backgroundColor = 'var(--bg-primary)';
-            }
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const messagesDiv = document.getElementById('form-messages');
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            fetch('php/contact-form.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                messagesDiv.classList.remove('hidden');
+                
+                if (data.includes('successfully')) {
+                    messagesDiv.className = 'text-center p-4 rounded-lg bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200';
+                    messagesDiv.textContent = 'Thank you! Your message has been sent successfully. I\'ll get back to you soon.';
+                    this.reset();
+                } else {
+                    messagesDiv.className = 'text-center p-4 rounded-lg bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200';
+                    messagesDiv.textContent = 'Sorry, there was an error sending your message. Please try again or contact me directly at muhsalmon98@gmail.com';
+                }
+            })
+            .catch(error => {
+                messagesDiv.classList.remove('hidden');
+                messagesDiv.className = 'text-center p-4 rounded-lg bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200';
+                messagesDiv.textContent = 'Sorry, there was an error sending your message. Please try again or contact me directly at muhsalmon98@gmail.com';
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         });
         
         // Intersection Observer for animations
@@ -904,19 +643,30 @@
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate-fade-in');
                 }
             });
         }, observerOptions);
         
         // Observe elements for animation
-        document.querySelectorAll('.work-item, .experience-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        document.querySelectorAll('article, .hover-lift').forEach(el => {
             observer.observe(el);
         });
+        
+        // Copy email to clipboard
+        function copyEmail() {
+            navigator.clipboard.writeText('muhsalmon98@gmail.com').then(() => {
+                // Show temporary success message
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-20 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                notification.textContent = 'Email copied to clipboard!';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
