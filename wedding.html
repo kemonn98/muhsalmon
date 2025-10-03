@@ -82,7 +82,7 @@
                     const container = document.querySelector(selector);
                     
                     if (timeDiff < 0) {
-                        container.innerHTML = '<div class="txt-m">The Wedding Day Has Arrived!</div>';
+                        container.innerHTML = '<div class="txt-m">The Marriage Contract Day Has Arrived!</div>';
                     } else {
                         // Update the counter elements
                         container.querySelector('.div-count:nth-child(1) .txt-counter').textContent = days;
@@ -239,7 +239,7 @@
                     </div>
                     <div id="w-node-c5968815-fda5-0d8a-0b18-cd76b9f0b9df-0fba9465" class="div-item vendors">
                         <div class="txt-label size-s">Make-Up Artist</div>
-                        <p class="txt-m">Yusuf Meyanto</p>
+                        <p class="txt-m">Yusuf Meiyanto</p>
                     </div>
                     <div id="w-node-bb1c8c2f-b998-6561-d270-908846ef16c0-0fba9465" class="div-item vendors">
                         <div class="txt-label size-s">Entertainment</div>
@@ -266,7 +266,7 @@
             <div class="div-wrapper">
                 <div class="div-head medium">
                     <div class="txt-label">( Calon mempelai )</div>
-                    <h2 class="h2">The Groom’s and The Bride’s</h2>
+                    <h2 class="h2">The Groom's and The Bride's</h2>
                 </div>
                 <div class="div-content grid-calon">
                     <div class="div-item"><img
@@ -278,7 +278,7 @@
                     <div id="w-node-_65cffa8b-b487-12ac-6472-db413ee02ace-0fba9465" class="div-item"><img
                             src="https://cdn.prod.website-files.com/677035670c04f65d0fba9459/677038450cd2fd8141a4ba60_img-brides.webp"
                             loading="lazy" alt="" class="img-person" />
-                        <h3 class="h3">Isna Anzila<br />Ma&#x27;rifah</h3>
+                        <h3 class="h3">Isna Anzila<br />Ma'rifah</h3>
                         <p class="txt-m">The second daughter of (Alm) Mr. H. Daelami and Mrs. Hj. Titik Fatmawati</p>
                     </div>
                 </div>
@@ -299,7 +299,7 @@
                 <div class="div-content grid-akad">
                     <div class="div-item">
                         <div class="txt-label">date &amp; Time</div>
-                        <p class="txt-m">Friday <em>(Jum&#x27;at)</em><br /><strong><em class="italic-text-3">January
+                        <p class="txt-m">Friday <em>(Jum'at)</em><br /><strong><em class="italic-text-3">January
                                     24, 2025</em></strong><br />at 8:00 AM</p>
                     </div>
                     <div id="w-node-e35938f2-f2fd-a271-da4f-b0156d353e27-0fba9465" class="div-countdown">
@@ -330,7 +330,7 @@
                     </div>
                     <div id="w-node-_91b87b44-5170-819d-85d0-735a1daca0e6-0fba9465" class="div-item">
                         <div class="txt-label">location</div>
-                        <p class="txt-m"><strong><em class="italic-text">Bride&#x27;s Residence</em></strong><br />Jl.
+                        <p class="txt-m"><strong><em class="italic-text">Bride's Residence</em></strong><br />Jl.
                             Dahlia, Plosoklaten, Kediri, East Java 64175</p>
                     </div>
                 </div>
@@ -499,7 +499,7 @@
                         class="lb-logo w-inline-block w--current"><img
                             src="images/is-logo.svg"
                             loading="lazy" alt="" class="img-logo" /></a>
-                    <p class="txt-m">Your presence will be our greatest gift. We can&#x27;t wait to celebrate this
+                    <p class="txt-m">Your presence will be our greatest gift. We can't wait to celebrate this
                         special day with you!</p>
                     <div class="txt-label">Regards, Isna &amp; Salmon</div>
                 </div>
@@ -590,19 +590,16 @@
     <script>
         // Function to get URL parameters
         function getUrlParameter(name) {
-            const url = window.location.href;
-            const paramIndex = url.indexOf('?id=');
-            if (paramIndex !== -1) {
-                // Get the parameter value and replace hyphens with spaces
-                return decodeURIComponent(url.slice(paramIndex + 4)).replace(/-/g, ' ');
-            }
-            return '';
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || '';
         }
 
         // Get the 'id' parameter from URL and update the guest name
         const guestName = getUrlParameter('id');
         if (guestName) {
-            document.getElementById('guestName').textContent = guestName;
+            // Replace all dashes with spaces and update the guest name
+            const formattedName = guestName.replace(/-/g, ' ');
+            document.getElementById('guestName').textContent = formattedName;
         }
     </script>
     <script>
